@@ -1,2 +1,3 @@
-# typescript-action-template
-GitHub Action TypeScript template repository
+# TypeScript Action Template
+
+GitHub Action quick start TypeScript template repository
