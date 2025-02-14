@@ -1,0 +1,227 @@
+/*
+ *
+ * Copyright 2025 Robert Lindley
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+ {
+  "GitHub Actions - Action - Branding": {
+    "prefix": "gha-action-branding",
+    "body": [
+      "branding:",
+      "  color: ${1|blue,green,orange,purple,red,yellow,gray-dark|}",
+      "  icon: ${2|alert,arrow-down-circle,arrow-right-circle,arrow-up-circle,bar-chart,bell,book,bookmark,briefcase,calendar,check-circle,check-square,chevron-down,chevron-left,chevron-right,chevron-up,clock,cloud,code,codesandbox,coffee,columns,command,cpu,credit-card,crosshair,disc,dollar-sign,download,edit,file,file-text,flag,folder,git-branch,git-commit,git-merge,git-pull-request,globe,grid,heart,help-circle,home,image,inbox,info,layout,life-buoy,link,list,lock,mail,map,menu,message-circle,message-square,minus-circle,minus-square,monitor,music,package,paperclip,pen-tool,percent,phone,pie-chart,play,plus-circle,plus-square,pocket,printer,radio,refresh-cloud,repeat,save,search,send,server,settings,shield,shopping-cart,shuffle,sidebar,sliders,smartphone,speaker,star,stop-circle,sun,tag,target,terminal,thumbs-down,thumbs-up,trash,triangle,truck,tv,umbrella,upload,user,users,video,watch,wifi,x-circle,x-square,zoom-in,zoom-out|}"
+    ],
+    "description": "Insert GitHub Action branding with predefined color and icon options.",
+    "scope": "yaml"
+  },
+  "GitHub Actions - Action - Step Env": {
+    "prefix": "gha-action-step-env",
+    "body": [
+      "    env:",
+      "      GITHUB_ACTOR: ${{ github.actor }}",
+      "      GITHUB_REF: ${{ github.ref }}",
+      "      GITHUB_REPOSITORY: ${{ github.repository }}",
+      "      GITHUB_SHA: ${{ github.sha }}",
+      "      GITHUB_WORKSPACE: ${{ github.workspace }}",
+      "      RUNNER_ARCH: ${{ runner.arch }}",
+      "      RUNNER_OS: ${{ runner.os }}"
+    ],
+    "description": "Insert commonly used GitHub Actions step environment variables.",
+    "scope": "yaml"
+  },
+  "GitHub Actions - Composite Action": {
+    "prefix": "gha-composite-action",
+    "body": [
+      "name: ${1:GitHub Composite Action}",
+      "author: ${2:Your Name}",
+      "description: ${3:Describe the composite action}",
+      "",
+      "inputs:",
+      "  ${4:input_name}:",
+      "    description: ${5:Input description}",
+      "    required: ${6|true,false|}",
+      "    default: ${7:default_value}",
+      "",
+      "outputs:",
+      "  ${8:output_name}:",
+      "    description: ${9:Output description}",
+      "    value: ${{ steps.${10:step_id}.outputs.result }}",
+      "",
+      "runs:",
+      "  using: composite",
+      "  steps:",
+      "    - name: Checkout Repository",
+      "      id: checkout-repository",
+      "      uses: actions/checkout@v4",
+      "",
+      "    - name: ${11:Your Step Name}",
+      "      id: ${12:your-step-id}",
+      "      run: ${13:echo 'Hello World'}",
+      "      shell: ${14|bash,pwsh,sh|}",
+      ""
+    ],
+    "description": "Boilerplate template for a GitHub Composite Action.",
+    "scope": "yaml"
+  },
+  "GitHub Actions - Composite Action 'run' Step": {
+    "prefix": "gha-composite-action-step-run",
+    "body": [
+      "    - name: ${1:Run Command}",
+      "      id: ${2:step_id}",
+      "      if: ${{ ${3:true} }}",
+      "      shell: ${4|bash,pwsh,sh|}",
+      "      run: |",
+      "        ${5:echo 'Hello World'}"
+    ],
+    "description": "Insert a 'run' step for a GitHub Composite Action.",
+    "scope": "yaml"
+  },
+  "GitHub Actions - Composite Action 'uses' Step": {
+    "prefix": "gha-composite-action-step-uses",
+    "body": [
+      "    - name: ${1:Use Existing Action}",
+      "      id: ${2:step_id}",
+      "      uses: ${3:actions/checkout@v4}",
+      "      with:",
+      "        ${4:input_name}: ${5:input_value}"
+    ],
+    "description": "Insert a 'uses' step for a GitHub Composite Action.",
+    "scope": "yaml"
+  },
+  "GitHub Actions - Docker Action": {
+    "prefix": "gha-docker-action",
+    "body": [
+      "name: ${1:Docker GitHub Action}",
+      "author: ${2:Your Name}",
+      "description: ${3:Describe the Docker-based action}",
+      "",
+      "inputs:",
+      "  ${4:input_name}:",
+      "    description: ${5:Input description}",
+      "    required: ${6|true,false|}",
+      "    default: ${7:default_value}",
+      "",
+      "outputs:",
+      "  ${8:output_name}:",
+      "    description: ${9:Output description}",
+      "",
+      "runs:",
+      "  using: docker",
+      "  image: ${10:Dockerfile}",
+      "  args:",
+      "    - ${11:--arg value}"
+    ],
+    "description": "Insert a template for a Docker-based GitHub Action.",
+    "scope": "yaml"
+  },
+  "GitHub Actions - Node Action": {
+    "prefix": "gha-node-action",
+    "body": [
+      "name: ${1:Node.js GitHub Action}",
+      "author: ${2:Your Name}",
+      "description: ${3:Describe the Node.js action}",
+      "",
+      "inputs:",
+      "  ${4:input_name}:",
+      "    description: ${5:Input description}",
+      "    required: ${6|true,false|}",
+      "    default: ${7:default_value}",
+      "",
+      "outputs:",
+      "  ${8:output_name}:",
+      "    description: ${9:Output description}",
+      "",
+      "runs:",
+      "  using: node20",
+      "  main: ${10:./dist/index.js}"
+    ],
+    "description": "Insert a template for a Node.js 20.x GitHub Action.",
+    "scope": "yaml"
+  },
+  "GitHub Actions - Workflow": {
+    "prefix": "gha-workflow",
+    "body": [
+      "name: ${1:GitHub Workflow}",
+      "",
+      "on:",
+      "  - push",
+      "  - pull_request",
+      "",
+      "jobs:",
+      "  ${2:build}:",
+      "    runs-on: ${3|ubuntu-latest,windows-latest,macos-latest|}",
+      "    steps:",
+      "      - name: Checkout Repository",
+      "        id: checkout-repository",
+      "        uses: actions/checkout@v4",
+      "",
+      "      - name: Setup Node.js",
+      "        id: setup-node",
+      "        uses: actions/setup-node@v4",
+      "        with:",
+      "          node-version: '${4|18,20|}'",
+      "",
+      "      - name: Install Dependencies",
+      "        id: install-dependencies",
+      "        run: npm install",
+      "",
+      "      - name: Run Tests",
+      "        id: run-tests",
+      "        run: npm test",
+      ""
+    ],
+    "description": "Boilerplate for a GitHub Actions workflow.",
+    "scope": "yaml"
+  },
+  "GitHub Actions - Workflow Job": {
+    "prefix": "gha-workflow-job",
+    "body": [
+      "jobs:",
+      "  ${1:job_name}:",
+      "    runs-on: ${2|ubuntu-latest,windows-latest,macos-latest|}",
+      "    steps:",
+      "      - name: Print Job Status",
+      "        id: print-job-status",
+      "        run: echo \"Job Status: ${{ job.status }}\""
+    ],
+    "description": "Insert a GitHub Actions workflow job with status reference.",
+    "scope": "yaml"
+  },
+  "GitHub Actions - Workflow Job 'run' Step": {
+    "prefix": "gha-workflow-job-step-run",
+    "body": [
+      "      - name: ${1:Run Command}",
+      "        id: ${2:step_id}",
+      "        if: ${{ ${3:true} }}",
+      "        shell: ${4|bash,pwsh,sh|}",
+      "        run: |",
+      "          ${5:echo 'Hello World'}"
+    ],
+    "description": "Insert a 'run' step for a GitHub Actions workflow job.",
+    "scope": "yaml"
+  },
+  "GitHub Actions - Workflow Job 'uses' Step": {
+    "prefix": "gha-workflow-job-step-uses",
+    "body": [
+      "      - name: ${1:Use Existing Action}",
+      "        id: ${2:step_id}",
+      "        uses: ${3:actions/checkout@v4}",
+      "        with:",
+      "          ${4:input_name}: ${5:input_value}"
+    ],
+    "description": "Insert a 'uses' step for a GitHub Actions workflow job.",
+    "scope": "yaml"
+  }
+}
