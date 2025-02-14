@@ -101,5 +101,6 @@ __tests__/runner/*
 .idea
 *.code-workspace
 
-# VSCode specific files
-.vscode/
+# VSCode specific files except code-snippets
+.vscode/*
+!.vscode/*.code-snippets
