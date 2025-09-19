@@ -8,30 +8,59 @@ TypeScript-based GitHub Actions.
 - **TypeScript Support**: Full TypeScript configuration with strict type
   checking
 - **ESLint & Prettier**: Code linting and formatting with Prettier integration
-- **Jest Testing**: Unit testing framework with coverage reporting
+- **Jest Testing**: Unit testing framework with coverage reporting and badge
+  generation
 - **Rollup Build**: Optimized bundling with minification using Terser
 - **Dependency Injection**: ILogger abstraction for better testability
+- **Code Quality Tools**: Duplicate code detection, circular dependency checking
 - **EditorConfig**: Consistent coding styles across editors
-- **CI/CD Ready**: Pre-configured scripts for building, testing, and releasing
+- **CI/CD Ready**: Pre-configured GitHub Actions workflows for CI/CD
+- **Local Development**: Support for local action testing with
+  @github/local-action
 
 ## Project Structure
 
-```
+```text
+├── .devcontainer/          # Dev container configuration
+├── .github/
+│   ├── workflows/          # GitHub Actions CI/CD workflows
+│   │   ├── ci.yml          # Main CI pipeline
+│   │   └── check-dist.yml  # Distribution verification
+│   ├── FUNDING.yml         # GitHub funding configuration
+│   └── pull_request_template.md
+├── .vscode/                # VS Code workspace settings
+├── __mocks__/              # Test mocks
+│   └── @actions/
+│       └── core.ts
+├── badges/                 # Generated coverage badges
+├── coverage/               # Test coverage reports
+├── dist/                   # Build output (committed)
+├── script/                 # Utility scripts
+│   ├── copyright.sh        # Copyright header management
+│   ├── distchk.sh          # Distribution verification
+│   └── release.sh          # Release automation
 ├── src/
-│   ├── index.ts          # Main entry point
-│   ├── action.ts         # Core action logic
-│   ├── action.test.ts    # Unit tests
-│   └── logger.ts         # Logging abstraction
-├── __mocks__/            # Test mocks
-├── script/               # Utility scripts
-├── badges/               # Coverage badges
-├── dist/                 # Build output (generated)
-├── tsconfig.json         # Production TypeScript config
-├── tsconfig.test.json    # Test TypeScript config
-├── rollup.config.ts      # Build configuration
-├── jest.config.mjs       # Test configuration
-├── eslint.config.mjs     # Linting configuration
-└── .editorconfig         # Editor style configuration
+│   ├── index.ts            # Main entry point
+│   ├── action.ts           # Core action logic
+│   ├── action.test.ts      # Unit tests
+│   └── logger.ts           # Logging abstraction
+├── .editorconfig           # Editor style configuration
+├── .gitignore              # Git ignore rules
+├── .gitattributes          # Git attributes
+├── .markdown-lint.yml      # Markdown linting configuration
+├── .nvmrc                  # Node.js version specification
+├── .prettierignore         # Prettier ignore rules
+├── .prettierrc.yml         # Prettier configuration
+├── .yaml-lint.yml          # YAML linting configuration
+├── action.yml              # GitHub Action metadata
+├── CODEOWNERS              # Code ownership rules
+├── eslint.config.mjs       # ESLint configuration
+├── jest.config.cjs         # Jest configuration
+├── package.json            # Project dependencies and scripts
+├── rollup.config.js        # Build configuration
+├── tsconfig.json           # Production TypeScript config
+├── tsconfig.test.json      # Test TypeScript config
+└── README.md               # This file
 ```
 
 ## Setup
@@ -41,17 +70,42 @@ TypeScript-based GitHub Actions.
 
    ```bash
    npm install
+   # or
+   yarn install
+   ```
+
+3. Use the correct Node.js version:
+
+   ```bash
+   nvm use
    ```
 
 ## Development
 
 ### Available Scripts
 
-- `npm run lint` - Run ESLint
-- `npm run lint:fix` - Run ESLint with auto-fix
-- `npm run test` - Run Jest tests
-- `npm run package` - Build the action
+- `npm run lint` - Run ESLint and Prettier checks
+- `npm run lint:fix` - Run ESLint with auto-fix and Prettier formatting
+- `npm run test` - Run Jest tests with coverage
+- `npm run package` - Build the action distribution
+- `npm run package:watch` - Build the action in watch mode
 - `npm run all` - Run lint, test, and build
+- `npm run dev` - Run the action locally for development
+- `npm run coverage` - Generate coverage badge
+- `npm run duplication` - Check for code duplication
+- `npm run madge` - Check for circular dependencies
+- `npm run copyright` - Update copyright headers
+- `npm run release` - Prepare a release
+
+### Local Development
+
+Test the action locally using the dev script:
+
+```bash
+npm run dev
+```
+
+This uses `@github/local-action` to run the action with your local source code.
 
 ### Testing
 
@@ -61,6 +115,23 @@ Run tests with coverage:
 npm test
 ```
 
+Coverage reports are generated in the `coverage/` directory, and a badge is
+created in `badges/coverage.svg`.
+
+### Code Quality
+
+Check for code duplication:
+
+```bash
+npm run duplication
+```
+
+Check for circular dependencies:
+
+```bash
+npm run madge
+```
+
 ### Building
 
 Build the action for distribution:
@@ -68,6 +139,16 @@ Build the action for distribution:
 ```bash
 npm run package
 ```
+
+This creates the bundled `dist/index.mjs` file.
+
+## CI/CD
+
+The repository includes comprehensive CI/CD workflows:
+
+- **CI Pipeline** (`ci.yml`): Runs linting, unit tests, and integration tests
+- **Distribution Check** (`check-dist.yml`): Ensures the `dist/` directory
+  matches the built output
 
 ## Usage in Workflows
 
@@ -79,6 +160,10 @@ npm run package
 ```
 
 ## Configuration
+
+### Node.js Version
+
+The project uses Node.js 20.18.0 (specified in `.nvmrc`).
 
 ### TypeScript
 
@@ -92,6 +177,7 @@ ESLint is configured with:
 - TypeScript rules
 - Jest plugin for test files
 - Prettier integration
+- Import resolution
 
 ### Formatting
 
@@ -101,6 +187,15 @@ Prettier is configured with:
 - Single quotes
 - Semicolons
 - 80 character line width
+
+### Build
+
+Rollup is configured to:
+
+- Bundle TypeScript to ES modules
+- Minify with Terser
+- Resolve Node.js modules
+- Handle CommonJS dependencies
 
 ## Contributing
 

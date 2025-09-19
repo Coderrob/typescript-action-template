@@ -21,13 +21,23 @@ import nodeResolve from '@rollup/plugin-node-resolve';
 import typescript from '@rollup/plugin-typescript';
 import terser from '@rollup/plugin-terser';
 
+/**
+ * @typedef {Object} RollupWarning
+ * @property {string} code
+ * @property {string[]} [ids]
+ */
+
 const config = {
   input: 'src/index.ts',
+  /**
+   * @param {RollupWarning} warning
+   * @param {(warning: RollupWarning) => void} warn
+   */
   onwarn: (warning, warn) => {
     // Ignore circular dependency warnings from third-party modules
     if (
       warning.code === 'CIRCULAR_DEPENDENCY' &&
-      warning.ids.some((id) => id.includes('node_modules'))
+      warning.ids?.some((id) => id.includes('node_modules'))
     ) {
       return;
     }
