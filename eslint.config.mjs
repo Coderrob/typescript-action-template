@@ -49,15 +49,15 @@ export default [
       ecmaVersion: 2023,
       sourceType: 'module',
       parserOptions: {
-        project: ['tsconfig.eslint.json'],
-        tsconfigRootDir: '.'
+        project: ['tsconfig.test.json'],
+        tsconfigRootDir: __dirname
       }
     },
     settings: {
       'import/resolver': {
         typescript: {
           alwaysTryTypes: true,
-          project: 'tsconfig.eslint.json'
+          project: 'tsconfig.test.json'
         }
       }
     },

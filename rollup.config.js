@@ -23,11 +23,11 @@ import terser from '@rollup/plugin-terser';
 
 const config = {
   input: 'src/index.ts',
-  onwarn: (warning: any, warn: (warning: any) => void) => {
+  onwarn: (warning, warn) => {
     // Ignore circular dependency warnings from third-party modules
     if (
       warning.code === 'CIRCULAR_DEPENDENCY' &&
-      warning.ids.some((id: string) => id.includes('node_modules'))
+      warning.ids.some((id) => id.includes('node_modules'))
     ) {
       return;
     }

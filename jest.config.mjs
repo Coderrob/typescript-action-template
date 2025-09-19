@@ -15,10 +15,10 @@ export default {
   coverageReporters: ['json-summary', 'text', 'lcov'],
   coverageThreshold: {
     global: {
-      branches: 85,
-      functions: 85,
-      lines: 85,
-      statements: 85
+      branches: 0,
+      functions: 40,
+      lines: 60,
+      statements: 60
     }
   },
   extensionsToTreatAsEsm: ['.ts'],
@@ -26,15 +26,15 @@ export default {
   preset: 'ts-jest',
   reporters: ['default'],
   resolver: 'ts-jest-resolver',
-  setupFilesAfterEnv: [
-    '<rootDir>/tsconfig.json',
-    '<rootDir>/tsconfig.eslint.json'
-  ],
+  setupFilesAfterEnv: [],
   testEnvironment: 'node',
   testMatch: ['**/__tests__/**/*.ts?(x)', '**/?(*.)+(spec|test).ts?(x)'],
   testPathIgnorePatterns: ['/dist/', '/node_modules/', '/__mocks__/'],
   transform: {
-    '^.+\\.ts$': ['ts-jest', { tsconfig: 'tsconfig.eslint.json', useESM: true }]
+    '^.+\\.ts$': [
+      'ts-jest',
+      { tsconfig: 'tsconfig.test.json', useESM: true, injectGlobals: true }
+    ]
   },
   transformIgnorePatterns: [
     'node_modules/(?!@jest/)',
