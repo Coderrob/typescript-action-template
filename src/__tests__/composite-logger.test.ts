@@ -1,6 +1,11 @@
 import { jest } from '@jest/globals';
-import { MockLogger, CompositeLogger } from '@/logging/index.js';
-import { ILogMetadata, ILogger, LogLevel } from '@/logging/index.js';
+import {
+  MockLogger,
+  CompositeLogger,
+  ILogMetadata,
+  ILogger,
+  LogLevel
+} from '../logging';
 
 describe('CompositeLogger', () => {
   let mockLogger1: MockLogger;
