@@ -2,7 +2,7 @@
 
 ## Directory Structure
 
-```
+```text
 typescript-action-template/
 ├── .automation/          # Project documentation and standards
 ├── .github/
@@ -87,13 +87,13 @@ typescript-action-template/
 
 ### Source Files
 
-- Use kebab-case for file names: `logger-config.ts`
+- Use kebab-case for filenames: `logger-config.ts`
 - Use PascalCase for class names: `LoggerConfigResolver`
 - Use camelCase for functions and variables: `resolveConfig`
 
 ### Test Files
 
-- Mirror source file names: `logger.test.ts`
+- Mirror source filenames: `logger.test.ts`
 - Use descriptive test names with behavioral language
 
 ### Configuration Files
@@ -159,7 +159,7 @@ export { FilteredLogger } from './filters/filtered-logger.js';
 - `npm run all` - Full quality check (lint, duplication, test, build)
 - `npm test` - Run tests with coverage and badge generation
 - `npm run lint` - Check code formatting and ESLint rules
-- `npm run lint:fix` - Auto-fix formatting and ESLint issues
+- `npm run lint:fix` - autofix formatting and ESLint issues
 - `npm run package` - Build distribution bundle
 - `npm run dev` - Test action locally with @github/local-action
 - `npm run duplication` - Check for code duplication (< 5%)

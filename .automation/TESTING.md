@@ -9,7 +9,7 @@ test suite covers unit tests, integration tests, and quality assurance checks.
 
 ### Directory Structure
 
-```
+```text
 src/
 ├── core/           # Core functionality tests
 │   └── action.test.ts

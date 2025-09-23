@@ -74,24 +74,24 @@ TypeScript-based GitHub Actions.
 1. Clone this repository
 2. Install dependencies:
 
-   ```bash
-   npm install
-   # or
-   yarn install
-   ```
+```bash
+npm install
+# or
+yarn install
+```
 
 3. Use the correct Node.js version:
 
-   ```bash
-   nvm use
-   ```
+```bash
+nvm use
+```
 
 ## Development
 
 ### Available Scripts
 
 - `npm run lint` - Run ESLint and Prettier checks
-- `npm run lint:fix` - Run ESLint with auto-fix and Prettier formatting
+- `npm run lint:fix` - Run ESLint with autofix and Prettier formatting
 - `npm run test` - Run Jest tests with coverage
 - `npm run package` - Build the action distribution
 - `npm run package:watch` - Build the action in watch mode
