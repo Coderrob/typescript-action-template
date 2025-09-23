@@ -1,5 +1,4 @@
 /*
- *
  * Copyright 2025 Robert Lindley
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,22 +15,4 @@
  *
  */
 
-import commonjs from '@rollup/plugin-commonjs';
-import nodeResolve from '@rollup/plugin-node-resolve';
-import typescript from '@rollup/plugin-typescript';
-import terser from '@rollup/plugin-terser';
-
-const config = {
-  input: 'src/index.ts',
-  output: [
-    { file: 'dist/index.mjs', format: 'es', esModule: true, sourcemap: false } // For ES Module
-  ],
-  plugins: [
-    typescript({ tsconfig: './tsconfig.json' }),
-    nodeResolve({ preferBuiltins: true }),
-    commonjs(),
-    terser()
-  ]
-};
-
-export default config;
+export { Action } from './action.js';

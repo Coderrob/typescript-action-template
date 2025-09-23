@@ -2,12 +2,14 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
     "declaration": false,
     "declarationMap": false,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "inlineSourceMap": true,
-    "inlineSources": true,
+    "inlineSourceMap": false,
+    "inlineSources": false,
+    "isolatedModules": true,
     "lib": ["ES2022"],
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
@@ -16,6 +18,9 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "outDir": "./dist",
+    "paths": {
+      "@/*": ["src/*"]
+    },
     "pretty": true,
     "resolveJsonModule": true,
     "sourceMap": false,
@@ -29,7 +34,7 @@
     "coverage",
     "dist",
     "node_modules",
-    "**/*.(spec|test).(j|t)s"
+    "**/**/*.test.ts"
   ],
   "include": ["src/**/*"]
 }

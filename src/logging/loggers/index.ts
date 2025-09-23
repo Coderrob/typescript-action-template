@@ -15,15 +15,14 @@
  *
  */
 
-// istanbul ignore file
+// Core logger implementations
+export type { CoreFunctions } from './core.js';
+export { CoreLogger } from './core.js';
+export { CompositeLogger } from './composite.js';
+export { FilteredLogger } from './filtered.js';
+export { MetricsLogger } from './metrics.js';
+export { MockLogger } from './mock.js';
+export { NoopLogger } from './noop.js';
 
-import { Action } from './core/index.js';
-
-/**
- * Main entry point for the GitHub Action.
- * Initializes and runs the Action instance.
- */
-(async function main(): Promise<void> {
-  const action = new Action();
-  await action.run();
-})();
+// Factory functions
+export { createCompositeLogger, createPinoLogger } from './factory.js';

@@ -1,6 +1,7 @@
 // See: https://eslint.org/docs/latest/use/configure/configuration-files
 
 import _import from 'eslint-plugin-import';
+import complexity from 'eslint-plugin-complexity';
 import globals from 'globals';
 import jest from 'eslint-plugin-jest';
 import js from '@eslint/js';
@@ -22,7 +23,7 @@ const compat = new FlatCompat({
 
 export default [
   {
-    ignores: ['**/coverage', '**/dist', '**/node_modules']
+    ignores: ['**/coverage', '**/dist', '**/node_modules', 'rollup.config.js']
   },
   ...compat.extends(
     'eslint:recommended',
@@ -33,6 +34,7 @@ export default [
   ),
   {
     plugins: {
+      complexity,
       import: fixupPluginRules(_import),
       jest,
       prettier,
@@ -49,20 +51,21 @@ export default [
       ecmaVersion: 2023,
       sourceType: 'module',
       parserOptions: {
-        project: ['tsconfig.eslint.json'],
-        tsconfigRootDir: '.'
+        project: ['tsconfig.test.json'],
+        tsconfigRootDir: __dirname
       }
     },
     settings: {
       'import/resolver': {
         typescript: {
           alwaysTryTypes: true,
-          project: 'tsconfig.eslint.json'
+          project: 'tsconfig.test.json'
         }
       }
     },
     rules: {
       camelcase: 'off',
+      complexity: ['error', 10],
       'eslint-comments/no-use': 'off',
       'eslint-comments/no-unused-disable': 'off',
       'i18n-text/no-en': 'off',

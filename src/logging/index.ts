@@ -15,15 +15,18 @@
  *
  */
 
-// istanbul ignore file
+// Export types
+export * from './types.js';
+export * from './pino/types.js';
 
-import { Action } from './core/index.js';
+// Export loggers
+export * from './loggers/index.js';
 
-/**
- * Main entry point for the GitHub Action.
- * Initializes and runs the Action instance.
- */
-(async function main(): Promise<void> {
-  const action = new Action();
-  await action.run();
-})();
+// Export Pino logger
+export * from './pino/index.js';
+
+// Export filters
+export * from './filters/index.js';
+
+// Export config
+export { LoggerConfigResolver } from './config.js';
