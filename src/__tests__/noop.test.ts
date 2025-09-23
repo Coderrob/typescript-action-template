@@ -1,4 +1,4 @@
-import { NoopLogger } from '../logging';
+import { NoopLogger } from '../logging/index.js';
 
 describe('NoopLogger', () => {
   let logger: NoopLogger;

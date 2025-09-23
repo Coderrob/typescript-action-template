@@ -1,5 +1,5 @@
 import { jest } from '@jest/globals';
-import { MockLogger, LogLevel } from '@/logging/index.js';
+import { MockLogger, LogLevel } from '../logging/index.js';
 
 describe('MockLogger', () => {
   let mockLogger: MockLogger;

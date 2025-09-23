@@ -3,7 +3,7 @@ import {
   LoggerConfigResolver,
   IPinoLoggerConfig,
   LogLevel
-} from '@/logging/index.js';
+} from '../logging/index.js';
 
 describe('LoggerConfigResolver', () => {
   const originalEnv = process.env;
@@ -21,6 +21,7 @@ describe('LoggerConfigResolver', () => {
 
   describe('resolve', () => {
     it('should resolve default configuration for development', () => {
+      delete process.env.GITHUB_ACTIONS;
       process.env.NODE_ENV = 'development';
       process.env.npm_package_version = '1.0.0';
 
