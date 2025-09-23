@@ -193,7 +193,7 @@ export function createCompositeLogger(loggers: ILogger[]): CompositeLogger {
 }
 ```
 
-### README Documentation
+### Readme Documentation
 
 - Include setup instructions
 - Provide usage examples
