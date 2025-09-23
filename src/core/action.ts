@@ -1,4 +1,4 @@
-import { ILogger, CoreLogger } from './logger.js';
+import { CoreLogger, ILogger } from '../logging/index.js';
 
 /**
  * Represents the main action class that executes the GitHub Action logic.

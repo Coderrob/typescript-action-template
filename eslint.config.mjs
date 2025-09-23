@@ -1,6 +1,7 @@
 // See: https://eslint.org/docs/latest/use/configure/configuration-files
 
 import _import from 'eslint-plugin-import';
+import complexity from 'eslint-plugin-complexity';
 import globals from 'globals';
 import jest from 'eslint-plugin-jest';
 import js from '@eslint/js';
@@ -33,6 +34,7 @@ export default [
   ),
   {
     plugins: {
+      complexity,
       import: fixupPluginRules(_import),
       jest,
       prettier,
@@ -63,6 +65,7 @@ export default [
     },
     rules: {
       camelcase: 'off',
+      complexity: ['error', 10],
       'eslint-comments/no-use': 'off',
       'eslint-comments/no-unused-disable': 'off',
       'i18n-text/no-en': 'off',

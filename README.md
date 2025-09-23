@@ -1,5 +1,11 @@
 # TypeScript Action Template
 
+[![CI](https://github.com/Coderrob/typescript-action-template/actions/workflows/ci.yml/badge.svg)](https://github.com/Coderrob/typescript-action-template/actions/workflows/ci.yml)
+[![Check dist/](https://github.com/Coderrob/typescript-action-template/actions/workflows/check-dist.yml/badge.svg)](https://github.com/Coderrob/typescript-action-template/actions/workflows/check-dist.yml)
+[![Coverage](./badges/coverage.svg)](./coverage/lcov-report/index.html)
+[![Node.js Version](https://img.shields.io/badge/node-%3E%3D20.18.0-brightgreen)](https://nodejs.org/)
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
 A comprehensive GitHub Action template repository for building robust
 TypeScript-based GitHub Actions.
 

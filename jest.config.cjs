@@ -1,7 +1,7 @@
 // See: https://jestjs.io/docs/configuration
 
 /** @type {import('@jest/types').Config.InitialOptions} **/
-export default {
+module.exports = {
   clearMocks: true,
   collectCoverage: true,
   collectCoverageFrom: ['./src/**'],
@@ -10,7 +10,7 @@ export default {
     '__mocks__',
     '/node_modules/',
     '/dist/',
-    'src/schema/'
+    '/tests/'
   ],
   coverageReporters: ['json-summary', 'text', 'lcov'],
   coverageThreshold: {
@@ -23,12 +23,15 @@ export default {
   },
   extensionsToTreatAsEsm: ['.ts'],
   moduleFileExtensions: ['ts', 'js'],
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1'
+  },
   preset: 'ts-jest',
   reporters: ['default'],
   resolver: 'ts-jest-resolver',
   setupFilesAfterEnv: [],
   testEnvironment: 'node',
-  testMatch: ['**/__tests__/**/*.ts?(x)', '**/?(*.)+(spec|test).ts?(x)'],
+  testMatch: ['**/*.test.ts', '**/*.test.js'],
   testPathIgnorePatterns: ['/dist/', '/node_modules/', '/__mocks__/'],
   transform: {
     '^.+\\.ts$': [

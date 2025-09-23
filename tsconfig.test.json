@@ -2,6 +2,7 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
     "allowJs": true,
+    "baseUrl": ".",
     "declaration": true,
     "declarationMap": true,
     "esModuleInterop": true,
@@ -9,6 +10,9 @@
     "inlineSources": false,
     "isolatedModules": true,
     "noEmit": true,
+    "paths": {
+      "@/*": ["src/*"]
+    },
     "sourceMap": true,
     "target": "es5"
   },

@@ -29,6 +29,7 @@ import terser from '@rollup/plugin-terser';
 
 const config = {
   input: 'src/index.ts',
+  external: ['pino', 'pino-pretty'], // Treat pino as external dependencies
   /**
    * @param {RollupWarning} warning
    * @param {(warning: RollupWarning) => void} warn
