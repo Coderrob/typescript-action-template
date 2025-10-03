@@ -8,7 +8,6 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "noEmit": true,
-    "outDir": null,
     "removeComments": false,
     "sourceMap": true,
     "target": "ES2022"
@@ -19,7 +18,7 @@
     "src",
     "eslint.config.mjs",
     "jest.config.cjs",
-    "rollup.config.ts"
+    "rollup.config.js"
   ],
   "exclude": ["dist", "node_modules"]
 }
