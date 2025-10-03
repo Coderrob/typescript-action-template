@@ -1,8 +1,7 @@
 /*
- *
  * Copyright 2025 Robert Lindley
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -13,10 +12,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
  */
 
-import commonjs from '@rollup/plugin-commonjs';
 import nodeResolve from '@rollup/plugin-node-resolve';
 import typescript from '@rollup/plugin-typescript';
 import terser from '@rollup/plugin-terser';
@@ -29,7 +26,10 @@ import terser from '@rollup/plugin-terser';
 
 const config = {
   input: 'src/index.ts',
-  external: ['pino', 'pino-pretty'], // Treat pino as external dependencies
+  external: (id) => {
+    // Keep all @actions/* and pino* as external for smaller bundle
+    return id.startsWith('@actions/') || id.startsWith('pino');
+  },
   /**
    * @param {RollupWarning} warning
    * @param {(warning: RollupWarning) => void} warn
@@ -44,14 +44,33 @@ const config = {
     }
     warn(warning);
   },
-  output: [
-    { file: 'dist/index.mjs', format: 'es', esModule: true, sourcemap: false } // For ES Module
-  ],
+  output: {
+    file: 'dist/index.mjs',
+    format: 'es',
+    esModule: true,
+    sourcemap: false,
+    compact: true,
+    minifyInternalExports: true
+  },
   plugins: [
-    typescript({ tsconfig: './tsconfig.json' }),
-    nodeResolve({ preferBuiltins: true }),
-    commonjs(),
-    terser()
+    typescript({
+      tsconfig: './tsconfig.json'
+    }),
+    nodeResolve({
+      preferBuiltins: true,
+      exportConditions: ['node'],
+      modulesOnly: true
+    }),
+    terser({
+      format: {
+        comments: false
+      },
+      compress: {
+        drop_console: false, // Keep console for GitHub Actions logging
+        drop_debugger: true,
+        pure_funcs: ['console.debug']
+      }
+    })
   ]
 };
 

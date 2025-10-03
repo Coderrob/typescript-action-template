@@ -1,10 +1,28 @@
+/*
+ * Copyright 2025 Robert Lindley
+ *
+ * Licensed the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
 import { jest } from '@jest/globals';
+
 import {
-  MockLogger,
   CompositeLogger,
-  ILogMetadata,
   ILogger,
-  LogLevel
+  ILogMetadata,
+  LogLevel,
+  MockLogger
 } from '../logging/index.js';
 
 describe('CompositeLogger', () => {
@@ -68,8 +86,8 @@ describe('CompositeLogger', () => {
 
       expect(mockLogger1.calls).toHaveLength(1);
       expect(mockLogger2.calls).toHaveLength(1);
-      expect(mockLogger1.calls[0].level).toBe('error');
-      expect(mockLogger2.calls[0].level).toBe('error');
+      expect(mockLogger1.calls[0].level).toBe(LogLevel.ERROR);
+      expect(mockLogger2.calls[0].level).toBe(LogLevel.ERROR);
     });
   });
 
@@ -82,12 +100,12 @@ describe('CompositeLogger', () => {
 
       expect(result).toBe('success');
       // Check that group operations were recorded
-      expect(mockLogger1.calls.some((call) => call.level === 'group')).toBe(
-        true
-      );
-      expect(mockLogger2.calls.some((call) => call.level === 'group')).toBe(
-        true
-      );
+      expect(
+        mockLogger1.calls.some((call) => call.level === LogLevel.GROUP)
+      ).toBe(true);
+      expect(
+        mockLogger2.calls.some((call) => call.level === LogLevel.GROUP)
+      ).toBe(true);
     });
 
     it('should handle group operation with logger failures', async () => {
@@ -99,7 +117,7 @@ describe('CompositeLogger', () => {
         setFailed: jest.fn(),
         group: jest.fn().mockImplementation(() => {
           throw new Error('Group failed');
-        }) as jest.MockedFunction<ILogger['group']>
+        }) as jest.MockedFunction<ILogger[LogLevel.GROUP]>
       };
 
       const compositeWithFailing = new CompositeLogger([
@@ -141,8 +159,8 @@ describe('CompositeLogger', () => {
 
       expect(mockLogger1.calls).toHaveLength(1);
       expect(mockLogger2.calls).toHaveLength(1);
-      expect(mockLogger1.calls[0].level).toBe('debug');
-      expect(mockLogger2.calls[0].level).toBe('debug');
+      expect(mockLogger1.calls[0].level).toBe(LogLevel.DEBUG);
+      expect(mockLogger2.calls[0].level).toBe(LogLevel.DEBUG);
     });
   });
 
@@ -153,8 +171,8 @@ describe('CompositeLogger', () => {
 
       expect(mockLogger1.calls).toHaveLength(1);
       expect(mockLogger2.calls).toHaveLength(1);
-      expect(mockLogger1.calls[0].level).toBe('warning');
-      expect(mockLogger2.calls[0].level).toBe('warning');
+      expect(mockLogger1.calls[0].level).toBe(LogLevel.WARNING);
+      expect(mockLogger2.calls[0].level).toBe(LogLevel.WARNING);
     });
   });
 
@@ -164,8 +182,8 @@ describe('CompositeLogger', () => {
 
       expect(mockLogger1.calls).toHaveLength(1);
       expect(mockLogger2.calls).toHaveLength(1);
-      expect(mockLogger1.calls[0].level).toBe('setFailed');
-      expect(mockLogger2.calls[0].level).toBe('setFailed');
+      expect(mockLogger1.calls[0].level).toBe(LogLevel.FAILED);
+      expect(mockLogger2.calls[0].level).toBe(LogLevel.FAILED);
     });
   });
 });

@@ -1,26 +1,39 @@
+/*
+ * Copyright 2025 Robert Lindley
+ *
+ * Licensed the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
 import { jest } from '@jest/globals';
-import { CoreLogger, CoreFunctions } from '../logging/index.js';
+
+import { CoreLogger } from '../logging/index.js';
+
+import {
+  createMockCoreFunctions,
+  expectGroupOperationCalls
+} from './test-utils.js';
 
 describe('CoreLogger', () => {
   let logger: CoreLogger;
-  let mockCoreFunctions: jest.Mocked<CoreFunctions>;
+  let mockCoreFunctions: ReturnType<typeof createMockCoreFunctions>;
 
   afterEach(() => {
     jest.clearAllMocks();
   });
 
   beforeEach(() => {
-    mockCoreFunctions = {
-      info: jest.fn(),
-      debug: jest.fn(),
-      notice: jest.fn(),
-      warning: jest.fn(),
-      error: jest.fn(),
-      setFailed: jest.fn(),
-      startGroup: jest.fn(),
-      endGroup: jest.fn()
-    };
-
+    mockCoreFunctions = createMockCoreFunctions();
     logger = new CoreLogger(mockCoreFunctions);
   });
 
@@ -64,10 +77,7 @@ describe('CoreLogger', () => {
         .mockResolvedValueOnce('result');
       const result = await logger.group('test group', mockFn);
 
-      expect(mockCoreFunctions.startGroup).toHaveBeenCalledTimes(1);
-      expect(mockCoreFunctions.startGroup).toHaveBeenCalledWith('test group');
-      expect(mockCoreFunctions.endGroup).toHaveBeenCalledTimes(1);
-      expect(mockFn).toHaveBeenCalledTimes(1);
+      expectGroupOperationCalls(mockCoreFunctions, 'test group', mockFn);
       expect(result).toBe('result');
     });
   });

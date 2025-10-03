@@ -16,6 +16,7 @@
  */
 
 import * as core from '@actions/core';
+
 import { ILogger, ILogMetadata } from '../types.js';
 
 /**

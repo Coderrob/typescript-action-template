@@ -128,6 +128,12 @@ export class MetricsLogger implements ILogger {
     return () => clearInterval(interval);
   }
 
+  /**
+   * Records a log entry and updates metrics accordingly.
+   * @param level - The log level (e.g., 'info', 'error').
+   * @param message - The log message.
+   * @param metadata - Optional metadata associated with the log.
+   */
   private recordLog(
     level: string,
     message?: string,
@@ -151,6 +157,10 @@ export class MetricsLogger implements ILogger {
     this.updateMetrics();
   }
 
+  /**
+   * Updates metrics specific to the log level.
+   * @param level - The log level.
+   */
   private updateLevelMetrics(level: string): void {
     switch (level) {
       case 'info':
@@ -173,6 +183,9 @@ export class MetricsLogger implements ILogger {
     }
   }
 
+  /**
+   * Updates overall metrics such as uptime, log rates, and averages.
+   */
   private updateMetrics(): void {
     const now = Date.now();
     this.metrics.lastUpdated = now;

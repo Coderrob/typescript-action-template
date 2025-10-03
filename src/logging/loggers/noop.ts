@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /*
  * Copyright 2025 Robert Lindley
  *
@@ -33,7 +32,7 @@ export class NoopLogger implements ILogger {
    * @param _message - Message to log as failure.
    * @param _metadata - Optional metadata for the failure.
    */
-  info(_message: string, _metadata?: ILogMetadata | undefined): void {
+  info(_message: string, _metadata?: ILogMetadata): void {
     /* No-op */
   }
 
@@ -42,7 +41,7 @@ export class NoopLogger implements ILogger {
    * @param _message - Message to log as failure.
    * @param _metadata - Optional metadata for the failure.
    */
-  debug(_message: string, _metadata?: ILogMetadata | undefined): void {
+  debug(_message: string, _metadata?: ILogMetadata): void {
     /* No-op */
   }
 
@@ -51,7 +50,7 @@ export class NoopLogger implements ILogger {
    * @param _message - Message to log as failure.
    * @param _metadata - Optional metadata for the failure.
    */
-  warning(_message: string, _metadata?: ILogMetadata | undefined): void {
+  warning(_message: string, _metadata?: ILogMetadata): void {
     /* No-op */
   }
 
@@ -60,7 +59,7 @@ export class NoopLogger implements ILogger {
    * @param _message - Message to log as failure.
    * @param _metadata - Optional metadata for the failure.
    */
-  error(_message: string, _metadata?: ILogMetadata | undefined): void {
+  error(_message: string, _metadata?: ILogMetadata): void {
     /* No-op */
   }
 
@@ -69,7 +68,7 @@ export class NoopLogger implements ILogger {
    * @param _message - Message to log as failure.
    * @param _metadata - Optional metadata for the failure.
    */
-  fatal(_message: string, _metadata?: ILogMetadata | undefined): void {
+  fatal(_message: string, _metadata?: ILogMetadata): void {
     /* No-op */
   }
 
@@ -78,7 +77,7 @@ export class NoopLogger implements ILogger {
    * @param _message - Message to log as failure.
    * @param _metadata - Optional metadata for the failure.
    */
-  trace(_message: string, _metadata?: ILogMetadata | undefined): void {
+  trace(_message: string, _metadata?: ILogMetadata): void {
     /* No-op */
   }
 
@@ -100,6 +99,12 @@ export class NoopLogger implements ILogger {
     /* No-op */
   }
 
+  /**
+   * Executes a grouped operation (no-op).
+   * @param _name - Name of the group.
+   * @param _fn - Function to execute within the group.
+   * @returns The result of the function execution.
+   */
   group<T>(_name: string, _fn: () => Promise<T>): Promise<T> {
     return _fn();
   }

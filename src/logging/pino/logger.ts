@@ -16,8 +16,9 @@
  */
 
 import pino from 'pino';
-import { ILogger, ILogMetadata } from '../types.js';
+
 import { NoopLogger } from '../loggers/noop.js';
+import { ILogger, ILogMetadata } from '../types.js';
 
 /**
  * Implementation of ILogger that uses Pino for structured logging.

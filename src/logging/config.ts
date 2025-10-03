@@ -16,6 +16,7 @@
  */
 
 import * as pino from 'pino';
+
 import { IPinoLoggerConfig } from './pino/types.js';
 
 /**
