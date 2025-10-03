@@ -115,7 +115,7 @@ nvm use
 - **`npm run dev`** - 🔧 Local development with @github/local-action
 - **`npm run typecheck`** - 📋 TypeScript type checking without emit
 - **`npm run lint`** - 🔍 Prettier and ESLint validation
-- **`npm run lint:fix`** - 🎨 Auto-format and fix code issues
+- **`npm run lint:fix`** - 🎨 Autoformat and fix code issues
 - **`npm run quality`** - 📊 Quality gates: lint + duplication + circular deps
 - **`npm test`** - 🧪 Jest tests with coverage reporting
 - **`npm run coverage`** - 📈 Generate coverage badge
@@ -233,15 +233,15 @@ Rollup produces an optimized bundle with:
 
 ### Configuration Files Summary
 
-| File                 | Purpose                      | Key Features                                          |
-| -------------------- | ---------------------------- | ----------------------------------------------------- |
-| `action.yml`         | GitHub Action metadata       | Defines inputs, outputs, and Node.js runtime          |
-| `package.json`       | Project configuration        | Optimized scripts, 24 dependencies (down from 32)     |
-| `tsconfig.json`      | TypeScript production config | Strict rules, ES2022 target, Node.js resolution       |
-| `tsconfig.test.json` | TypeScript test config       | Extends base with Jest globals and test types         |
-| `eslint.config.mjs`  | ESLint flat configuration    | SonarJS rules, import organization, complexity limits |
-| `jest.config.cjs`    | Jest testing framework       | Coverage reports, TypeScript transformation           |
-| `rollup.config.js`   | Build system configuration   | 99.7% bundle reduction, external dependencies         |
+| File                 | Purpose                      | Key Features                                             |
+| -------------------- | ---------------------------- | -------------------------------------------------------- |
+| `action.yml`         | GitHub Action metadata       | Defines inputs, outputs, and Node.js runtime             |
+| `package.json`       | Project configuration        | Optimized scripts, 24 dependencies (down from 32)        |
+| `tsconfig.json`      | TypeScript production config | Strict rules, ECMAScript 2022 target, Node.js resolution |
+| `tsconfig.test.json` | TypeScript test config       | Extends base with Jest globals and test types            |
+| `eslint.config.mjs`  | ESLint flat configuration    | SonarJS rules, import organization, complexity limits    |
+| `jest.config.cjs`    | Jest testing framework       | Coverage reports, TypeScript transformation              |
+| `rollup.config.js`   | Build tool configuration     | 99.7% bundle reduction, external dependencies            |
 
 ## Usage in Your Action
 
