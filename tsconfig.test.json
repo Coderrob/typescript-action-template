@@ -8,7 +8,6 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "noEmit": true,
-    "outDir": null,
     "removeComments": false,
     "sourceMap": true,
     "target": "ES2022"
