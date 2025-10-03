@@ -24,11 +24,11 @@ module.exports = {
   extensionsToTreatAsEsm: ['.ts'],
   moduleFileExtensions: ['ts', 'js'],
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/src/$1'
+    '^@/(.*)$': '<rootDir>/src/$1',
+    '^(\\.{1,2}/.*)\\.js$': '$1'
   },
   preset: 'ts-jest',
   reporters: ['default'],
-  resolver: 'ts-jest-resolver',
   setupFilesAfterEnv: [],
   testEnvironment: 'node',
   testMatch: ['**/*.test.ts', '**/*.test.js'],

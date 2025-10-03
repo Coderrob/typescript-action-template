@@ -16,6 +16,7 @@
  */
 
 import { jest } from '@jest/globals';
+
 import { Action } from '../core/action.js';
 import { ILogger } from '../logging/index.js';
 

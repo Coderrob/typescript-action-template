@@ -1,0 +1,34 @@
+# Source files
+src/
+__mocks__/
+__tests__/
+
+# Configuration files
+*.config.*
+.eslint*
+.prettier*
+.jscpd*
+.nvmrc
+.editorconfig
+.gitignore
+.gitattributes
+
+# Development files
+.devcontainer/
+.vscode/
+.automation/
+.github/
+script/
+badges/
+
+# Build artifacts
+coverage/
+node_modules/
+*.log
+
+# Documentation (keep only README.md)
+*.md
+!README.md
+
+# TypeScript configs
+tsconfig*.json

@@ -1,29 +1,24 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "./tsconfig.json",
   "compilerOptions": {
     "allowJs": true,
-    "baseUrl": ".",
     "declaration": true,
     "declarationMap": true,
-    "esModuleInterop": true,
-    "inlineSourceMap": false,
-    "inlineSources": false,
-    "isolatedModules": true,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "noEmit": true,
-    "paths": {
-      "@/*": ["src/*"]
-    },
+    "removeComments": false,
     "sourceMap": true,
-    "target": "es5"
+    "target": "ES2022"
   },
-  "exclude": ["dist", "node_modules"],
-  "extends": "./tsconfig.json",
   "include": [
     "__mocks__",
     "__tests__",
     "src",
     "eslint.config.mjs",
     "jest.config.cjs",
-    "rollup.config.ts"
-  ]
+    "rollup.config.js"
+  ],
+  "exclude": ["dist", "node_modules"]
 }

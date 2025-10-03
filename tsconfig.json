@@ -4,16 +4,13 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "declaration": false,
-    "declarationMap": false,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "inlineSourceMap": false,
-    "inlineSources": false,
     "isolatedModules": true,
     "lib": ["ES2022"],
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "newLine": "lf",
+    "module": "ES2022",
+    "moduleResolution": "Node",
+    "noEmit": false,
     "noImplicitAny": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -21,20 +18,14 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "pretty": true,
+    "removeComments": true,
     "resolveJsonModule": true,
+    "skipLibCheck": true,
     "sourceMap": false,
     "strict": true,
-    "strictNullChecks": true,
     "target": "ES2022",
     "useUnknownInCatchVariables": true
   },
-  "exclude": [
-    "__mocks__",
-    "coverage",
-    "dist",
-    "node_modules",
-    "**/**/*.test.ts"
-  ],
-  "include": ["src/**/*"]
+  "include": ["src/**/*"],
+  "exclude": ["src/**/*.test.ts", "src/**/__tests__/**/*", "__mocks__/**/*"]
 }

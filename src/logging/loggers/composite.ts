@@ -74,33 +74,68 @@ export class CompositeLogger implements ILogger {
 
   /**
    * Executes a grouped operation with all registered loggers.
-   * The function is executed once and the result is passed to all loggers.
+   * Each logger's group wraps the function execution individually.
    * @param name - The name of the group.
    * @param fn - The function to execute within the group.
    * @returns A promise that resolves when all group operations complete.
    */
   async group<T>(name: string, fn: () => Promise<T>): Promise<T> {
-    // Execute the function once to get the result
-    const result = await fn();
+    if (this.loggers.length === 0) {
+      return fn();
+    }
 
-    // Execute the group operation with all loggers using the already computed result
-    await Promise.allSettled(
+    // If there's only one logger, delegate directly
+    if (this.loggers.length === 1) {
+      return this.loggers[0].group(name, fn);
+    }
+
+    // For multiple loggers, execute in parallel but handle errors appropriately
+    const results = await Promise.allSettled(
       this.loggers.map(async (logger, index) => {
         try {
-          return await logger.group(name, async () => result);
+          return await logger.group(name, fn);
         } catch (error) {
-          // Log the error but don't let one logger failure break others
           console.warn(
             `Logger group operation failed for logger ${index}:`,
             error
           );
+          // Re-throw to be handled by Promise.allSettled
           throw error;
         }
       })
     );
 
-    // Return the result since we already executed fn successfully
-    return result;
+    // Analyze results to determine success/failure
+    const failures: Array<{ index: number; error: unknown }> = [];
+    let successResult: T | undefined;
+
+    results.forEach((result, index) => {
+      if (result.status === 'fulfilled') {
+        // Use the first successful result (they should all be the same)
+        if (successResult === undefined) {
+          successResult = result.value;
+        }
+      } else {
+        failures.push({ index, error: result.reason });
+      }
+    });
+
+    // If all loggers failed, throw the first error
+    if (failures.length === results.length) {
+      console.error('All loggers failed in group operation:', failures);
+      throw failures[0].error;
+    }
+
+    // If some failed but at least one succeeded, log warnings but continue
+    if (failures.length > 0) {
+      console.warn(
+        `${failures.length} of ${results.length} loggers failed in group operation:`,
+        failures
+      );
+    }
+
+    // Return the successful result
+    return successResult as T;
   }
 
   /**

@@ -16,9 +16,12 @@
  */
 
 import pino from 'pino';
-import { CoreLogger } from './core.js';
+
 import { PinoLogger } from '../pino/logger.js';
+import { LogLevel } from '../types.js';
+
 import { CompositeLogger } from './composite.js';
+import { CoreLogger } from './core.js';
 
 /**
  * Factory function to create a CompositeLogger with CoreLogger and PinoLogger.
@@ -39,7 +42,7 @@ export function createCompositeLogger(
  */
 export function createPinoLogger(): PinoLogger {
   return new PinoLogger({
-    level: process.env.LOG_LEVEL || 'info',
+    level: process.env.LOG_LEVEL || LogLevel.INFO,
     transport:
       process.env.NODE_ENV !== 'production'
         ? {

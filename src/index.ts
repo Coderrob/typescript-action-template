@@ -23,7 +23,7 @@ import { Action } from './core/index.js';
  * Main entry point for the GitHub Action.
  * Initializes and runs the Action instance.
  */
-(async function main(): Promise<void> {
+await (async function main(): Promise<void> {
   const action = new Action();
   await action.run();
 })();

@@ -1,0 +1,14 @@
+{
+  "threshold": 2,
+  "reporters": ["html", "console"],
+  "ignore": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/coverage/**",
+    "**/__mocks__/**"
+  ],
+  "minLines": 5,
+  "minTokens": 70,
+  "output": "./coverage/jscpd",
+  "exitCode": 1
+}

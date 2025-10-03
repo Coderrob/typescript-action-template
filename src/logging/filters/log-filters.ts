@@ -23,6 +23,8 @@ import { ILogMetadata, LogFilter, LogLevel } from '../types.js';
 export class LogFilters {
   /**
    * Filter out logs below a certain level
+   * @param minLevel - The minimum log level to allow.
+   * @return A LogFilter function that filters out logs below the specified level.
    */
   static levelFilter(minLevel: LogLevel): LogFilter {
     const levels: Record<LogLevel, number> = {
@@ -42,7 +44,9 @@ export class LogFilters {
   }
 
   /**
-   * Filter out logs that match a pattern
+   * Exclude logs that match a pattern
+   * @param pattern - The string or RegExp pattern to match against log messages.
+   * @return A LogFilter function that excludes messages matching the pattern.
    */
   static excludePattern(pattern: string | RegExp): LogFilter {
     const regex = typeof pattern === 'string' ? new RegExp(pattern) : pattern;
@@ -51,6 +55,8 @@ export class LogFilters {
 
   /**
    * Only include logs that match a pattern
+   * @param pattern - The string or RegExp pattern to match against log messages.
+   * @return A LogFilter function that includes only messages matching the pattern.
    */
   static includePattern(pattern: string | RegExp): LogFilter {
     const regex = typeof pattern === 'string' ? new RegExp(pattern) : pattern;
@@ -59,6 +65,8 @@ export class LogFilters {
 
   /**
    * Filter based on metadata properties
+   * @param predicate - A function that takes metadata and returns true to include the log, false to exclude it.
+   * @return A LogFilter function that filters logs based on the provided predicate.
    */
   static metadataFilter(
     predicate: (metadata?: ILogMetadata) => boolean
@@ -68,6 +76,8 @@ export class LogFilters {
 
   /**
    * Rate limiting filter (simple implementation)
+   * @param maxPerSecond - Maximum number of logs allowed per second.
+   * @return A LogFilter function that limits the rate of logs.
    */
   static rateLimit(maxPerSecond: number): LogFilter {
     let lastReset = Date.now();
